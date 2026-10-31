@@ -6,6 +6,7 @@
 <meta name="description" content="רותם ואיתי מתחתנים · 15.06.2027 · האחוזה, בית חנן">
 <meta property="og:title" content="Rotem & Itai · 15.06.2027">
 <meta property="og:description" content="רותם ואיתי מתחתנים · גן האירועים האחוזה, בית חנן">
+<meta property="og:image" content="https://itaitunik-lang.github.io/rotem-itai-wedding/img/hero.jpg">
 <meta name="theme-color" content="#fbf4e8">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>רותם ואיתי</title>
@@ -39,14 +40,24 @@ body{background:var(--linen);color:var(--ink);font-family:var(--body);font-size:
 .gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 
 /* Hero */
-.hero{position:relative;overflow:hidden;background:var(--sky-low);text-align:center}
-.hero svg{display:block;width:100%;height:clamp(300px,62vw,520px)}
-.hero-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding-top:clamp(28px,7vw,72px);gap:4px}
-.hero .eyebrow{font-family:var(--en);letter-spacing:.2em;font-size:.95rem;color:var(--muted)}
-.names{font-family:var(--en);font-weight:500;font-size:clamp(2.6rem,9vw,4.8rem);line-height:1;margin:6px 0 0;text-wrap:balance}
-.names .amp{font-family:var(--script);color:var(--apricot);font-size:.9em;padding-inline:.15em}
-.he-names{font-family:var(--he-display);font-size:1.05rem;color:var(--muted);margin:2px 0 0}
+.hero{position:relative;overflow:hidden;background:var(--olive);color:#fff;text-align:center;height:clamp(520px,88svh,860px)}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(30,20,10,.05) 35%,rgba(30,20,10,.62) 100%)}
+.hero-text{position:absolute;inset:auto 0 0;z-index:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding-block:0 clamp(32px,7vh,64px)}
+.hero .eyebrow{font-family:var(--en);letter-spacing:.2em;font-size:.95rem;color:rgba(255,255,255,.88)}
+.names{font-family:var(--en);font-weight:500;font-size:clamp(2.8rem,10vw,5.2rem);line-height:1;margin:6px 0 0;text-wrap:balance;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.names .amp{font-family:var(--script);color:#ffc9a6;font-size:.9em;padding-inline:.15em}
+.he-names{font-family:var(--he-display);font-size:1.05rem;color:rgba(255,255,255,.9);margin:2px 0 0}
 .hero .date{font-family:var(--en);font-size:1.4rem;letter-spacing:.12em;margin-top:6px}
+@media (prefers-reduced-motion:no-preference){.hero-img{animation:settle 2.4s ease-out both}}
+@keyframes settle{from{transform:scale(1.06)}to{transform:none}}
+
+/* Photos */
+.photo{display:block;width:100%;max-width:100%;border-radius:14px;object-fit:cover;background:var(--line)}
+.gallery{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-block:4px 12px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));scrollbar-width:thin}
+.gallery img{flex:0 0 auto;height:min(62vw,340px);width:auto;max-width:none;border-radius:12px;scroll-snap-align:center;object-fit:cover}
+.gallery-hint{color:var(--muted);font-size:.85rem;text-align:center}
+.thanks-photo{width:min(260px,70%);aspect-ratio:3/4;margin-inline:auto;border-radius:999px 999px 14px 14px}
 
 /* Content */
 main{max-width:680px;margin:0 auto;padding-block:8px 120px;display:flex;flex-direction:column}
@@ -122,6 +133,7 @@ legend{font-weight:600;font-size:.95rem;margin-bottom:8px;padding:0}
 .story li::before{content:"";position:absolute;inset-inline-start:-26px;top:7px;width:15px;height:15px;border-radius:50%;background:var(--sun);border:3px solid var(--linen)}
 .story .when{font-family:var(--en);color:var(--apricot);font-size:1.05rem}
 .story strong{display:block;font-size:1.1rem}
+.story-img{margin-top:10px;aspect-ratio:4/3;max-height:340px}
 
 /* Wishes */
 .wishes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
@@ -151,28 +163,7 @@ details p{margin-top:8px;color:var(--muted)}
 
 <div dir="rtl" lang="he">
 <header class="hero" id="top">
-  <svg viewBox="0 0 800 420" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sky-top)"/><stop offset="1" stop-color="var(--sky-low)"/></linearGradient>
-    </defs>
-    <rect width="800" height="420" fill="url(#sky)"/>
-    <circle cx="400" cy="318" r="58" fill="var(--sun)" opacity=".6"/>
-    <path d="M0 290 C140 262 260 270 400 284 C540 298 660 262 800 276 L800 420 L0 420Z" fill="var(--field-2)"/>
-    <g fill="var(--olive)" opacity=".85">
-      <ellipse cx="70" cy="272" rx="26" ry="20"/><ellipse cx="112" cy="268" rx="20" ry="16"/>
-      <ellipse cx="690" cy="262" rx="28" ry="21"/><ellipse cx="735" cy="266" rx="20" ry="15"/>
-      <path d="M215 276 C212 250 220 226 226 214 C232 226 240 250 237 276Z"/><path d="M572 270 C569 244 577 220 583 208 C589 220 597 244 594 270Z"/>
-    </g>
-    <path d="M0 320 C160 300 300 312 420 322 C560 334 680 306 800 314 L800 420 L0 420Z" fill="var(--field)"/>
-    <g stroke="var(--field-2)" stroke-width="2" opacity=".55" fill="none">
-      <path d="M0 360 C200 340 600 350 800 345"/><path d="M0 385 C220 368 580 378 800 372"/><path d="M0 408 C240 396 560 402 800 398"/>
-    </g>
-    <g stroke="var(--ink)" stroke-width="3" fill="none" opacity=".7" stroke-linecap="round">
-      <path d="M368 352 L368 300 M432 352 L432 300"/><path d="M360 300 C380 290 420 290 440 300"/>
-    </g>
-    <path d="M362 300 C372 312 386 315 400 312 C414 315 428 312 438 300" fill="var(--paper)" opacity=".8"/>
-    <g fill="var(--apricot)"><circle cx="362" cy="298" r="5"/><circle cx="438" cy="298" r="5"/><circle cx="400" cy="291" r="4"/></g>
-  </svg>
+  <img class="hero-img" src="img/hero.jpg" alt="רותם ואיתי ליד נהר בין הרים ירוקים" fetchpriority="high">
   <div class="hero-text gutter">
     <div class="eyebrow">We're getting married</div>
     <h1 class="names" lang="en" dir="ltr">Rotem<span class="amp">&amp;</span>Itai</h1>
@@ -273,11 +264,35 @@ details p{margin-top:8px;color:var(--muted)}
   <section aria-labelledby="h-story">
     <div class="head"><h2 id="h-story" lang="en">Our Love Story</h2></div>
     <ol class="story">
-      <li><span class="when" lang="en">How we met</span><strong>הכרנו בצבא</strong><span class="note">הסיפור המלא יתווסף</span></li>
-      <li><span class="when" lang="en">First date</span><strong>הדייט הראשון</strong><span class="note">יתווסף</span></li>
-      <li><span class="when" lang="en">The proposal</span><strong>ההצעה</strong><span class="note">יתווסף</span></li>
+      <li><span class="when" lang="en">How we met</span><strong>הכרנו בצבא</strong><span class="note">הסיפור המלא יתווסף</span><img class="photo story-img" src="img/met.jpg" alt="רותם ואיתי בטיול מים עם חברים" loading="lazy"></li>
+      <li><span class="when" lang="en">Early days</span><strong>הימים הראשונים</strong><span class="note">יתווסף</span><img class="photo story-img" src="img/date.jpg" alt="סלפי של רותם ואיתי בשדה התעופה" loading="lazy"></li>
+      <li><span class="when" lang="en">Adventures</span><strong>מטיילים בעולם</strong><span class="note">יתווסף</span><img class="photo story-img" src="img/adv.jpg" alt="רותם ואיתי מעל קניון ונהר" loading="lazy"></li>
+      <li><span class="when" lang="en">She said yes</span><strong>ההצעה</strong><span class="note">יתווסף</span><img class="photo story-img" src="img/ask.jpg" alt="רותם ואיתי בפיקניק במדבר" loading="lazy"></li>
       <li><span class="when ltr">15.06.2027</span><strong>מתחתנים</strong></li>
     </ol>
+  </section>
+
+  <section aria-labelledby="h-moments">
+    <div class="head"><h2 id="h-moments" lang="en">Moments</h2><small>כמה רגעים מהדרך שלנו</small></div>
+    <div class="gallery" tabindex="0" aria-label="גלריית תמונות">
+      <img src="img/g01.jpg" alt="מרימים ידיים במדבר" loading="lazy">
+      <img src="img/g02.jpg" alt="בתוך לב, אחרי אומגה" loading="lazy">
+      <img src="img/g03.jpg" alt="שקיעה מעל הים" loading="lazy">
+      <img src="img/g04.jpg" alt="בין סלעים אדומים" loading="lazy">
+      <img src="img/g05.jpg" alt="על גשר ברוקלין" loading="lazy">
+      <img src="img/g06.jpg" alt="בבריכת אינסוף" loading="lazy">
+      <img src="img/g07.jpg" alt="תצפית על איים" loading="lazy">
+      <img src="img/g08.jpg" alt="מול קו הרקיע" loading="lazy">
+      <img src="img/g09.jpg" alt="חוף סלעים שחורים" loading="lazy">
+      <img src="img/g10.jpg" alt="במגרש הכדורגל" loading="lazy">
+      <img src="img/g11.jpg" alt="סלפי ליד המים" loading="lazy">
+      <img src="img/g12.jpg" alt="בתוך קניון אנטילופה" loading="lazy">
+      <img src="img/g13.jpg" alt="עם זרי פרחים" loading="lazy">
+      <img src="img/g14.jpg" alt="ברחובות העיר בחורף" loading="lazy">
+      <img src="img/g15.jpg" alt="שקיעה מהמרפסת" loading="lazy">
+      <img src="img/g16.jpg" alt="במדבר" loading="lazy">
+    </div>
+    <p class="gallery-hint">גוללים הצידה לעוד תמונות</p>
   </section>
 
   <section aria-labelledby="h-wish">
@@ -305,6 +320,7 @@ details p{margin-top:8px;color:var(--muted)}
   </section>
 
   <section class="center" aria-label="תודה">
+    <img class="photo thanks-photo" src="img/thanks.jpg" alt="רותם ואיתי מתנשקים מתחת לכוכב מואר" loading="lazy">
     <div class="thanks" lang="en">thank you</div>
     <p>מחכים לחגוג איתכם, רותם ואיתי</p>
   </section>
