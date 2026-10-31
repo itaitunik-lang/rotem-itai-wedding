@@ -156,7 +156,7 @@ details p{margin-top:8px;color:var(--muted)}
       <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sky-top)"/><stop offset="1" stop-color="var(--sky-low)"/></linearGradient>
     </defs>
     <rect width="800" height="420" fill="url(#sky)"/>
-    <circle cx="400" cy="300" r="70" fill="var(--sun)" opacity=".55"/>
+    <circle cx="400" cy="318" r="58" fill="var(--sun)" opacity=".6"/>
     <path d="M0 290 C140 262 260 270 400 284 C540 298 660 262 800 276 L800 420 L0 420Z" fill="var(--field-2)"/>
     <g fill="var(--olive)" opacity=".85">
       <ellipse cx="70" cy="272" rx="26" ry="20"/><ellipse cx="112" cy="268" rx="20" ry="16"/>
@@ -190,7 +190,7 @@ details p{margin-top:8px;color:var(--muted)}
       <div><b id="cd-h">00</b><span>שעות</span></div><i>:</i>
       <div><b id="cd-d">000</b><span>ימים</span></div>
     </div>
-    <div class="actions" style="margin-top:8px"><a class="btn primary" href="#rsvp">לאישור הגעה</a></div>
+    <div class="actions" style="margin-top:8px" id="cta"><a class="btn primary" href="#rsvp">לאישור הגעה</a></div>
   </section>
 
   <section aria-labelledby="h-dear">
@@ -361,7 +361,12 @@ details p{margin-top:8px;color:var(--muted)}
   // Hide floating RSVP button while the RSVP section is on screen
   var fab = $('fab');
   if('IntersectionObserver' in window){
-    new IntersectionObserver(function(es){ fab.classList.toggle('hide', es[0].isIntersecting); }, {threshold:.15}).observe($('rsvp'));
+    var seen = {};
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ seen[e.target.id] = e.isIntersecting; });
+      fab.classList.toggle('hide', !!(seen.top || seen.cta || seen.rsvp));
+    }, {threshold:.15});
+    ['top','cta','rsvp'].forEach(function(id){ io.observe($(id)); });
   }
 })();
 </script>
