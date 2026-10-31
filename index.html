@@ -218,6 +218,7 @@ details p{margin-top:8px;color:var(--muted)}
     <div class="head"><h2 id="h-rsvp" lang="en">RSVP</h2><small>נשמח לתשובה עד <span class="ltr">15.05.2027</span></small></div>
     <div class="panel">
       <form id="rsvp-form" novalidate>
+        <input type="text" name="website" id="r-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
         <label class="full">שם מלא<input id="r-name" required placeholder="למשל: דנה כהן"></label>
         <label>טלפון נייד<input id="r-phone" type="tel" inputmode="tel" dir="ltr" placeholder="050-0000000"></label>
         <label>מצד<select id="r-side"><option value="">בחירה</option><option>הכלה</option><option>החתן</option><option>שניהם</option></select></label>
@@ -236,13 +237,12 @@ details p{margin-top:8px;color:var(--muted)}
             <label><input type="checkbox" id="r-bus-back"> חזור</label>
           </div>
         </fieldset>
-        <div class="full"><button class="btn primary" type="submit">שליחת אישור</button></div>
-        <p class="full err" id="r-err" hidden>נא למלא שם מלא.</p>
+        <div class="full"><button class="btn primary" type="submit" id="r-send">שליחת אישור</button></div>
+        <p class="full err" id="r-err" hidden></p>
       </form>
       <div class="done" id="r-done" hidden>
         <h3 lang="en">Thank you</h3>
         <p id="r-done-text"></p>
-        <p class="note">טיוטה: התשובה לא נשמרת עדיין. בשלב הבא נחבר את הטופס ל-Google Sheet.</p>
         <button class="btn" type="button" id="r-edit">עריכת התשובה</button>
       </div>
     </div>
@@ -284,13 +284,14 @@ details p{margin-top:8px;color:var(--muted)}
     <div class="head"><h2 id="h-wish" lang="en">Wish Us Something</h2><small>כמה מילים מהלב, שיישארו איתנו למזכרת</small></div>
     <div class="panel">
       <form id="w-form" novalidate>
+        <input type="text" name="website" id="w-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
         <label class="full">השם שלכם<input id="w-name" placeholder="למשל: סבא וסבתא"></label>
         <label class="full">הברכה<textarea id="w-text" placeholder="מזל טוב!"></textarea></label>
-        <div class="full"><button class="btn primary" type="submit">שליחה</button></div>
-        <p class="full err" id="w-err" hidden>נא לכתוב ברכה.</p>
+        <div class="full"><button class="btn primary" type="submit" id="w-send">שליחה</button></div>
+        <p class="full err" id="w-err" hidden></p>
       </form>
     </div>
-    <ul class="wishes" id="w-list"></ul>
+    <p class="center" id="w-done" hidden><strong>הברכה נשלחה, תודה!</strong> היא תחכה לנו למזכרת.</p>
   </section>
 
   <section aria-labelledby="h-faq">
@@ -326,7 +327,15 @@ details p{margin-top:8px;color:var(--muted)}
   }
   tick(); setInterval(tick, 1000);
 
-  // RSVP (draft: not saved yet)
+  // Google Apps Script web app that writes to the wedding Google Sheet
+  var ENDPOINT = '';
+  function send(data){
+    if(!ENDPOINT) return Promise.resolve();
+    return fetch(ENDPOINT, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(data)});
+  }
+  function busy(btn, on, label){ btn.disabled = on; btn.textContent = on ? 'שולח…' : label; }
+
+  // RSVP
   var form = $('rsvp-form'), done = $('r-done');
   function sync(){
     var no = $('r-no').checked;
@@ -335,27 +344,37 @@ details p{margin-top:8px;color:var(--muted)}
   form.addEventListener('change', sync); sync();
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    var name = $('r-name').value.trim();
-    if(!name){ $('r-err').hidden = false; $('r-name').focus(); return; }
-    $('r-err').hidden = true;
-    var a = form.querySelector('input[name=attend]:checked').value, t = $('r-done-text');
-    if(a === 'yes') t.textContent = name + ', רשמנו ' + $('r-count').value + ' אורחים. נתראה ברחבה!';
-    else if(a === 'maybe') t.textContent = name + ', נשלח תזכורת קרוב למועד.';
-    else t.textContent = name + ', תודה שעדכנתם. נתגעגע.';
-    form.hidden = true; done.hidden = false;
+    var name = $('r-name').value.trim(), err = $('r-err'), btn = $('r-send');
+    if(!name){ err.textContent = 'נא למלא שם מלא.'; err.hidden = false; $('r-name').focus(); return; }
+    err.hidden = true;
+    var a = form.querySelector('input[name=attend]:checked').value;
+    var data = {type:'rsvp', name:name, phone:$('r-phone').value.trim(), side:$('r-side').value, attend:a,
+      count:$('r-count').value, food:$('r-food').value, busTo:$('r-bus-to').checked, busBack:$('r-bus-back').checked, website:$('r-hp').value};
+    busy(btn, true, 'שליחת אישור');
+    send(data).then(function(){
+      var t = $('r-done-text');
+      if(a === 'yes') t.textContent = name + ', רשמנו ' + data.count + ' אורחים. נתראה ברחבה!';
+      else if(a === 'maybe') t.textContent = name + ', קיבלנו. אפשר לעדכן כאן שוב כשתדעו.';
+      else t.textContent = name + ', תודה שעדכנתם. נתגעגע.';
+      form.hidden = true; done.hidden = false;
+    }).catch(function(){
+      err.textContent = 'השליחה לא הצליחה. כדאי לבדוק את החיבור לאינטרנט ולנסות שוב.'; err.hidden = false;
+    }).finally(function(){ busy(btn, false, 'שליחת אישור'); });
   });
   $('r-edit').addEventListener('click', function(){ done.hidden = true; form.hidden = false; });
 
-  // Wishes (draft: shown on this screen only)
+  // Wishes (sent privately to the couple's sheet)
   $('w-form').addEventListener('submit', function(e){
     e.preventDefault();
-    var text = $('w-text').value.trim();
-    if(!text){ $('w-err').hidden = false; return; }
-    $('w-err').hidden = true;
-    var li = document.createElement('li'), p = document.createElement('p'), c = document.createElement('cite');
-    p.textContent = text; c.textContent = $('w-name').value.trim() || 'אורח/ת';
-    li.append(p, c); $('w-list').prepend(li);
-    $('w-text').value = '';
+    var text = $('w-text').value.trim(), err = $('w-err'), btn = $('w-send');
+    if(!text){ err.textContent = 'נא לכתוב ברכה.'; err.hidden = false; return; }
+    err.hidden = true;
+    busy(btn, true, 'שליחה');
+    send({type:'wish', name:$('w-name').value.trim(), text:text, website:$('w-hp').value}).then(function(){
+      $('w-text').value = ''; $('w-done').hidden = false;
+    }).catch(function(){
+      err.textContent = 'השליחה לא הצליחה. כדאי לבדוק את החיבור לאינטרנט ולנסות שוב.'; err.hidden = false;
+    }).finally(function(){ busy(btn, false, 'שליחה'); });
   });
 
   // Hide floating RSVP button while the RSVP section is on screen
