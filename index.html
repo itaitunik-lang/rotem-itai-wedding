@@ -11,17 +11,17 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>רותם ואיתי</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@400;500;600&family=Pinyon+Script&family=Frank+Ruhl+Libre:wght@400;500&family=Assistant:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bellefair&family=Solitreo&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Pinyon+Script&display=swap">
 <style>
 /* Layout: one scrolling column; a full-width illustrated pastoral hero (fields behind the chuppah at sunset), then sections on warm linen. Summer-Italian: olive fields, lemon sun, apricot dusk. */
 :root{
   --linen:#fbf4e8; --paper:#fffaf2; --ink:#3b2b1f; --muted:#7a6553; --line:#ead9c2;
   --olive:#5b6a2c; --field:#8a9a45; --field-2:#b5b85c; --sun:#e6ae34; --apricot:#d46e47; --apricot-ink:#ffffff;
   --sky-top:#f6c99a; --sky-low:#fbe7c8;
-  --en:"Cormorant SC", "Cormorant Garamond", Georgia, serif;
+  --en:"Cormorant Garamond", Georgia, serif;
   --script:"Pinyon Script", "Snell Roundhand", cursive;
-  --he-display:"Frank Ruhl Libre", "David Libre", Georgia, serif;
-  --body:"Assistant", "Segoe UI", Arial, sans-serif;
+  --he-display:"Solitreo", "Bellefair", Georgia, serif;
+  --body:"Bellefair", "Frank Ruhl Libre", Georgia, serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --linen:#1b1510; --paper:#241c15; --ink:#f4e8d5; --muted:#c3ab92; --line:#3d3025;
@@ -35,7 +35,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:var(--linen);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.7}
+body{background:var(--linen);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.7}
 .ltr{unicode-bidi:isolate;direction:ltr;display:inline-block}
 .gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 
@@ -45,14 +45,24 @@ body{background:var(--linen);color:var(--ink);font-family:var(--body);font-size:
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(30,20,10,.05) 35%,rgba(30,20,10,.62) 100%)}
 .hero-text{position:absolute;inset:auto 0 0;z-index:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding-block:0 clamp(32px,7vh,64px)}
 .hero .eyebrow{font-family:var(--en);letter-spacing:.2em;font-size:.95rem;color:rgba(255,255,255,.88)}
-.names{font-family:var(--en);font-weight:500;font-size:clamp(2.8rem,10vw,5.2rem);line-height:1;margin:6px 0 0;text-wrap:balance;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.names{font-family:var(--en);font-style:italic;font-weight:400;font-size:clamp(2.8rem,10vw,5.2rem);line-height:1;margin:6px 0 0;text-wrap:balance;text-shadow:0 2px 18px rgba(0,0,0,.35)}
 .names .amp{font-family:var(--script);color:#ffc9a6;font-size:.9em;padding-inline:.15em}
-.he-names{font-family:var(--he-display);font-size:1.05rem;color:rgba(255,255,255,.9);margin:2px 0 0}
+.he-names{font-family:var(--he-display);font-size:1.25rem;color:rgba(255,255,255,.9);margin:2px 0 0}
 .hero .date{font-family:var(--en);font-size:1.4rem;letter-spacing:.12em;margin-top:6px}
 @media (prefers-reduced-motion:no-preference){.hero-img{animation:settle 2.4s ease-out both}}
 @keyframes settle{from{transform:scale(1.06)}to{transform:none}}
 
 .hp{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);opacity:0;pointer-events:none}
+
+/* Illustrations: thin line art, olive stroke, soft fills */
+.ill{width:92px;height:62px;color:var(--olive);fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;overflow:visible;margin-bottom:4px}
+.ill .f{fill:color-mix(in srgb,var(--field-2) 22%,transparent)}
+.ill .a{fill:color-mix(in srgb,var(--apricot) 55%,transparent);stroke:var(--apricot)}
+.ill-small{display:block;margin:6px auto 0;width:84px;height:56px}
+.ill-hero{color:#fff;width:120px;height:44px;margin:4px 0 0}
+.ill-hero .f{fill:rgba(255,255,255,.18)}
+.ill-hero .a{fill:#ffc9a6;stroke:#ffc9a6}
+.center .ill{display:block;margin-inline:auto}
 
 /* Photos */
 .photo{display:block;width:100%;max-width:100%;border-radius:14px;object-fit:cover;background:var(--line)}
@@ -66,7 +76,7 @@ main{max-width:680px;margin:0 auto;padding-block:8px 120px;display:flex;flex-dir
 section{padding-block:52px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:14px}
 section:last-of-type{border-bottom:0}
 .head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}
-h2{font-family:var(--en);font-weight:500;font-size:clamp(1.9rem,6vw,2.5rem);letter-spacing:.04em;line-height:1.1;margin:0;color:var(--olive);text-wrap:balance}
+h2{font-family:var(--en);font-style:italic;font-weight:400;font-size:clamp(2.1rem,6.5vw,2.8rem);letter-spacing:.01em;line-height:1.1;margin:0;color:var(--olive);text-wrap:balance}
 .head small{color:var(--muted);font-size:.9rem}
 .sprig{width:46px;height:auto;color:var(--olive);margin-bottom:6px}
 p{margin:0}
@@ -80,20 +90,20 @@ p{margin:0}
 .count span{font-size:.8rem;color:var(--muted)}
 .count i{font-style:normal;font-family:var(--en);font-size:2rem;color:var(--apricot);line-height:1.2}
 
-.letter{font-family:var(--he-display);font-size:1.15rem;line-height:1.85;text-align:center;max-width:34ch;margin-inline:auto}
-.letter .sign{display:block;margin-top:12px;color:var(--apricot)}
+.letter{font-family:var(--body);font-size:1.25rem;line-height:1.85;text-align:center;max-width:34ch;margin-inline:auto}
+.letter .sign{display:block;margin-top:14px;color:var(--apricot);font-family:var(--he-display);font-size:1.35rem}
 
 /* Timeline */
 .timeline{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
 .timeline li{display:grid;grid-template-columns:70px 1fr;gap:16px;align-items:baseline;padding-block:14px;border-bottom:1px dotted var(--line)}
 .timeline li:last-child{border-bottom:0}
 .timeline time{font-family:var(--en);font-size:1.5rem;color:var(--apricot);font-variant-numeric:tabular-nums}
-.timeline strong{font-size:1.1rem}
-.venue{font-family:var(--he-display);font-size:1.3rem;text-align:center}
+.timeline strong{font-size:1.2rem;font-weight:400}
+.venue{font-family:var(--he-display);font-size:1.5rem;text-align:center}
 
 /* Buttons */
 .actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-.btn{font:600 1rem var(--body);display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 22px;border-radius:999px;
+.btn{font:400 1.08rem var(--body);letter-spacing:.02em;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 22px;border-radius:999px;
   border:1.5px solid var(--olive);color:var(--olive);background:transparent;text-decoration:none;cursor:pointer}
 .btn:hover{background:color-mix(in srgb,var(--olive) 10%,transparent)}
 .btn.primary{background:var(--apricot);border-color:var(--apricot);color:var(--apricot-ink)}
@@ -105,11 +115,11 @@ p{margin:0}
 .panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px 20px}
 form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .full{grid-column:1/-1}
-label{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:.95rem;min-width:0}
-input,select,textarea{font:400 1rem var(--body);color:var(--ink);background:var(--linen);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+label{display:flex;flex-direction:column;gap:6px;font-weight:400;font-size:.95rem;min-width:0}
+input,select,textarea{font:400 1.05rem var(--body);color:var(--ink);background:var(--linen);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
 textarea{min-height:90px;resize:vertical}
 fieldset{border:0;padding:0;margin:0;min-width:0}
-legend{font-weight:600;font-size:.95rem;margin-bottom:8px;padding:0}
+legend{font-weight:400;font-size:.95rem;margin-bottom:8px;padding:0}
 .choices{display:flex;flex-wrap:wrap;gap:8px}
 .choices label{flex-direction:row;align-items:center;font-weight:400;border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer;background:var(--linen)}
 .choices input{width:auto;accent-color:var(--olive)}
@@ -121,7 +131,7 @@ legend{font-weight:600;font-size:.95rem;margin-bottom:8px;padding:0}
 
 /* Shuttles */
 .shuttle{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
-.shuttle strong{font-size:1.1rem}
+.shuttle strong{font-size:1.2rem;font-weight:400}
 
 /* Gifts */
 .gifts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
@@ -134,7 +144,7 @@ legend{font-weight:600;font-size:.95rem;margin-bottom:8px;padding:0}
 .story li{position:relative}
 .story li::before{content:"";position:absolute;inset-inline-start:-26px;top:7px;width:15px;height:15px;border-radius:50%;background:var(--sun);border:3px solid var(--linen)}
 .story .when{font-family:var(--en);color:var(--apricot);font-size:1.05rem}
-.story strong{display:block;font-size:1.1rem}
+.story strong{display:block;font-size:1.25rem;font-weight:400;font-family:var(--he-display)}
 .story-img{margin-top:10px;aspect-ratio:4/3;max-height:340px}
 
 /* Wishes */
@@ -144,7 +154,7 @@ legend{font-weight:600;font-size:.95rem;margin-bottom:8px;padding:0}
 
 /* FAQ */
 details{border-bottom:1px solid var(--line);padding-block:12px}
-summary{cursor:pointer;font-weight:700;font-size:1.05rem;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary{cursor:pointer;font-weight:400;font-size:1.05rem;list-style:none;display:flex;justify-content:space-between;gap:12px}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+";font-family:var(--en);font-size:1.4rem;color:var(--apricot);line-height:1}
 details[open] summary::after{content:"–"}
@@ -164,19 +174,38 @@ details p{margin-top:8px;color:var(--muted)}
 <body>
 
 <div dir="rtl" lang="he">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-olive" viewBox="0 0 120 60"><path d="M10 40 C40 34 80 30 110 18"/><path d="M30 37 C26 28 18 25 12 26 C16 33 23 37 30 37Z" class="f"/><path d="M48 33 C47 23 41 18 35 17 C37 25 42 31 48 33Z" class="f"/><path d="M66 29 C67 19 73 14 79 13 C77 21 72 27 66 29Z" class="f"/><path d="M84 24 C86 15 93 11 99 11 C96 18 90 23 84 24Z" class="f"/><path d="M40 36 C38 44 32 48 26 48 C29 42 34 38 40 36Z" class="f"/><path d="M74 27 C76 36 82 40 88 41 C86 34 80 29 74 27Z" class="f"/><circle cx="58" cy="40" r="4" class="a"/><circle cx="95" cy="30" r="3.5" class="a"/></symbol>
+    <symbol id="i-chuppah" viewBox="0 0 120 90"><path d="M24 86 V30 M96 86 V30"/><path d="M16 30 C40 12 80 12 104 30"/><path d="M20 30 C34 40 46 42 60 38 C74 42 86 40 100 30" class="f"/><path d="M8 86 H112"/><circle cx="24" cy="28" r="5" class="a"/><circle cx="96" cy="28" r="5" class="a"/><circle cx="60" cy="18" r="4" class="a"/><path d="M14 86 C14 78 20 74 24 74 M106 86 C106 78 100 74 96 74"/></symbol>
+    <symbol id="i-glasses" viewBox="0 0 120 90"><path d="M38 16 L52 18 L50 40 C49 48 41 52 36 48 C31 44 33 34 38 16Z" class="f"/><path d="M43 50 L40 78 M32 80 H48"/><path d="M82 16 L68 18 L70 40 C71 48 79 52 84 48 C89 44 87 34 82 16Z" class="f"/><path d="M77 50 L80 78 M72 80 H88"/><path d="M60 10 V2 M52 6 L48 0 M68 6 L72 0"/><circle cx="60" cy="14" r="2.5" class="a"/></symbol>
+    <symbol id="i-rings" viewBox="0 0 120 80"><circle cx="48" cy="46" r="20"/><circle cx="72" cy="46" r="20"/><path d="M42 24 L48 16 L54 24 Z" class="a"/><path d="M30 12 L34 16 M90 12 L86 16 M60 6 V12"/></symbol>
+    <symbol id="i-envelope" viewBox="0 0 120 80"><rect x="18" y="16" width="84" height="54" rx="4" class="f"/><path d="M18 18 L60 48 L102 18"/><path d="M60 44 C55 36 46 38 48 45 C50 50 60 56 60 56 C60 56 70 50 72 45 C74 38 65 36 60 44Z" class="a"/></symbol>
+    <symbol id="i-bus" viewBox="0 0 120 80"><rect x="16" y="18" width="88" height="40" rx="8" class="f"/><path d="M16 38 H104 M30 18 V38 M52 18 V38 M74 18 V38 M94 18 V38"/><circle cx="36" cy="62" r="7"/><circle cx="84" cy="62" r="7"/><path d="M6 70 H114"/><circle cx="98" cy="48" r="2.5" class="a"/></symbol>
+    <symbol id="i-dress" viewBox="0 0 120 90"><path d="M50 10 C52 18 54 22 60 22 C66 22 68 18 70 10"/><path d="M50 10 L46 34 L30 82 H90 L74 34 L70 10" class="f"/><path d="M46 34 H74"/><path d="M60 24 C57 20 52 22 54 26 C55 28 60 31 60 31 C60 31 65 28 66 26 C68 22 63 20 60 24Z" class="a"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 120 90"><rect x="24" y="36" width="72" height="46" rx="3" class="f"/><rect x="18" y="26" width="84" height="12" rx="3"/><path d="M60 26 V82"/><path d="M60 26 C50 10 34 12 38 22 C40 27 52 26 60 26 C68 26 80 27 82 22 C86 12 70 10 60 26Z" class="a"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 120 80"><path d="M60 70 C40 56 22 42 22 26 C22 14 34 8 44 12 C52 15 58 22 60 28 C62 22 68 15 76 12 C86 8 98 14 98 26 C98 42 80 56 60 70Z" class="f"/><path d="M8 40 C20 40 26 30 34 40 M86 40 C94 30 100 40 112 40"/><circle cx="60" cy="34" r="3" class="a"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 120 80"><rect x="18" y="22" width="84" height="48" rx="8" class="f"/><path d="M44 22 L50 12 H70 L76 22"/><circle cx="60" cy="46" r="15"/><circle cx="60" cy="46" r="6" class="a"/><circle cx="90" cy="32" r="2.5" class="a"/></symbol>
+    <symbol id="i-lemon" viewBox="0 0 120 80"><path d="M14 30 C40 24 70 20 104 14"/><ellipse cx="44" cy="50" rx="17" ry="13" class="a" transform="rotate(-18 44 50)"/><path d="M44 36 V28"/><path d="M78 21 C80 10 90 6 98 6 C96 14 88 20 78 21Z" class="f"/><path d="M60 25 C58 34 52 38 46 38 C48 31 54 26 60 25Z" class="f"/><ellipse cx="82" cy="44" rx="13" ry="10" class="a" transform="rotate(14 82 44)"/><path d="M82 34 V22"/></symbol>
+    <symbol id="i-question" viewBox="0 0 120 80"><path d="M60 70 V36"/><path d="M60 50 C50 46 44 38 46 30 C54 32 60 40 60 50Z" class="f"/><path d="M60 42 C70 38 76 30 74 22 C66 24 60 32 60 42Z" class="f"/><circle cx="60" cy="24" r="8" class="a"/><path d="M40 70 H80"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 120 80"><path d="M10 64 C30 56 50 60 60 62 C72 64 92 56 110 62"/><path d="M34 62 A26 26 0 0 1 86 62" class="a"/><path d="M60 20 V10 M36 30 L30 22 M84 30 L90 22 M24 48 L14 44 M96 48 L106 44"/></symbol>
+  </defs>
+</svg>
+
 <header class="hero" id="top">
   <img class="hero-img" src="img/hero.jpg" alt="רותם ואיתי ליד נהר בין הרים ירוקים" fetchpriority="high">
   <div class="hero-text gutter">
     <div class="eyebrow">We're getting married</div>
     <h1 class="names" lang="en" dir="ltr">Rotem<span class="amp">&amp;</span>Itai</h1>
     <p class="he-names">רותם אפרתי ואיתי טוניק</p>
+    <svg class="ill ill-hero" aria-hidden="true"><use href="#i-olive"/></svg>
     <div class="date ltr">15 · 06 · 2027</div>
   </div>
 </header>
 
 <main class="gutter">
   <section aria-label="ספירה לאחור">
-    <div class="head"><h2 lang="en">Counting the Days</h2></div>
+    <div class="head"><svg class="ill" aria-hidden="true"><use href="#i-sun"/></svg><h2 lang="en">Counting the Days</h2></div>
     <div class="count" aria-live="off">
       <div><b id="cd-s">00</b><span>שניות</span></div><i>:</i>
       <div><b id="cd-m">00</b><span>דקות</span></div><i>:</i>
@@ -187,12 +216,13 @@ details p{margin-top:8px;color:var(--muted)}
   </section>
 
   <section aria-labelledby="h-dear">
-    <div class="head"><h2 id="h-dear" lang="en">Dear Family &amp; Friends</h2></div>
+    <div class="head"><svg class="ill" aria-hidden="true"><use href="#i-envelope"/></svg><h2 id="h-dear" lang="en">Dear Family &amp; Friends</h2></div>
     <p class="letter">טיוטה: אחרי שנים יחד, הגיע הזמן לחגוג. נשמח מאוד שתהיו איתנו בערב קיץ אחד בין השדות, כדי לשמוח, לרקוד ולהתחיל את הפרק הבא כשאתם לצידנו.<span class="sign">באהבה, רותם ואיתי</span></p>
+    <svg class="ill ill-small" aria-hidden="true"><use href="#i-lemon"/></svg>
   </section>
 
   <section aria-labelledby="h-day">
-    <div class="head"><h2 id="h-day" lang="en">The Wedding Day</h2><small>יום שלישי, <span class="ltr">15.06.2027</span></small></div>
+    <div class="head"><svg class="ill" aria-hidden="true"><use href="#i-chuppah"/></svg><h2 id="h-day" lang="en">The Wedding Day</h2><small>יום שלישי, <span class="ltr">15.06.2027</span></small></div>
     <p class="venue">גן האירועים האחוזה, בית חנן</p>
     <ol class="timeline">
       <li><time class="ltr">19:30</time><strong>קבלת פנים</strong></li>
@@ -208,7 +238,7 @@ details p{margin-top:8px;color:var(--muted)}
   </section>
 
   <section aria-labelledby="h-rsvp" id="rsvp">
-    <div class="head"><h2 id="h-rsvp" lang="en">RSVP</h2><small>נשמח לתשובה עד <span class="ltr">15.05.2027</span></small></div>
+    <div class="head"><svg class="ill" aria-hidden="true"><use href="#i-glasses"/></svg><h2 id="h-rsvp" lang="en">RSVP</h2><small>נשמח לתשובה עד <span class="ltr">15.05.2027</span></small></div>
     <div class="panel">
       <form id="rsvp-form" novalidate>
         <input type="text" name="website" id="r-hp" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
@@ -242,7 +272,7 @@ details p{margin-top:8px;color:var(--muted)}
   </section>
 
   <section aria-labelledby="h-shuttle">
-    <div class="head"><h2 id="h-shuttle" lang="en">Shuttles</h2><small>משאירים את הרכב בבית וחוגגים בראש שקט</small></div>
+    <div class="head"><svg class="ill" aria-hidden="true"><use href="#i-bus"/></svg><h2 id="h-shuttle" lang="en">Shuttles</h2><small>משאירים את הרכב בבית וחוגגים בראש שקט</small></div>
     <div class="shuttle">
       <strong>תל אביב</strong><span class="tbd">שעה תעודכן</span>
       <span class="note">נקודת איסוף תעודכן</span><span class="note">הלוך וחזור</span>
@@ -251,12 +281,12 @@ details p{margin-top:8px;color:var(--muted)}
   </section>
 
   <section aria-labelledby="h-dress">
-    <div class="head"><h2 id="h-dress" lang="en">Dress Code</h2></div>
+    <div class="head"><svg class="ill" aria-hidden="true"><use href="#i-dress"/></svg><h2 id="h-dress" lang="en">Dress Code</h2></div>
     <p class="center">ערב קיץ בגן ירוק ופתוח. <span class="tbd">נוסח יעודכן</span></p>
   </section>
 
   <section aria-labelledby="h-gift">
-    <div class="head"><h2 id="h-gift" lang="en">Gifts</h2><small>אפשר לשלוח מתנה בקלות, בלי לעצור בכספומט</small></div>
+    <div class="head"><svg class="ill" aria-hidden="true"><use href="#i-gift"/></svg><h2 id="h-gift" lang="en">Gifts</h2><small>אפשר לשלוח מתנה בקלות, בלי לעצור בכספומט</small></div>
     <div class="gifts">
       <div class="gift"><b lang="en">Bit</b><a class="btn" aria-disabled="true">הקישור יתווסף</a></div>
       <div class="gift"><b lang="en">PayBox</b><a class="btn" aria-disabled="true">הקישור יתווסף</a></div>
@@ -264,7 +294,7 @@ details p{margin-top:8px;color:var(--muted)}
   </section>
 
   <section aria-labelledby="h-story">
-    <div class="head"><h2 id="h-story" lang="en">Our Love Story</h2></div>
+    <div class="head"><svg class="ill" aria-hidden="true"><use href="#i-rings"/></svg><h2 id="h-story" lang="en">Our Love Story</h2></div>
     <ol class="story">
       <li><span class="when" lang="en">How we met</span><strong>הכרנו בצבא</strong><span class="note">הסיפור המלא יתווסף</span><img class="photo story-img" src="img/met.jpg" alt="רותם ואיתי בטיול מים עם חברים" loading="lazy"></li>
       <li><span class="when" lang="en">Early days</span><strong>הימים הראשונים</strong><span class="note">יתווסף</span><img class="photo story-img" src="img/date.jpg" alt="סלפי של רותם ואיתי בשדה התעופה" loading="lazy"></li>
@@ -275,7 +305,7 @@ details p{margin-top:8px;color:var(--muted)}
   </section>
 
   <section aria-labelledby="h-moments">
-    <div class="head"><h2 id="h-moments" lang="en">Moments</h2><small>כמה רגעים מהדרך שלנו</small></div>
+    <div class="head"><svg class="ill" aria-hidden="true"><use href="#i-camera"/></svg><h2 id="h-moments" lang="en">Moments</h2><small>כמה רגעים מהדרך שלנו</small></div>
     <div class="gallery" tabindex="0" aria-label="גלריית תמונות">
       <img src="img/g01.jpg" alt="מרימים ידיים במדבר" loading="lazy">
       <img src="img/g02.jpg" alt="בתוך לב, אחרי אומגה" loading="lazy">
@@ -298,7 +328,7 @@ details p{margin-top:8px;color:var(--muted)}
   </section>
 
   <section aria-labelledby="h-wish">
-    <div class="head"><h2 id="h-wish" lang="en">Wish Us Something</h2><small>כמה מילים מהלב, שיישארו איתנו למזכרת</small></div>
+    <div class="head"><svg class="ill" aria-hidden="true"><use href="#i-heart"/></svg><h2 id="h-wish" lang="en">Wish Us Something</h2><small>כמה מילים מהלב, שיישארו איתנו למזכרת</small></div>
     <div class="panel">
       <form id="w-form" novalidate>
         <input type="text" name="website" id="w-hp" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
@@ -312,7 +342,7 @@ details p{margin-top:8px;color:var(--muted)}
   </section>
 
   <section aria-labelledby="h-faq">
-    <div class="head"><h2 id="h-faq" lang="en">Q &amp; A</h2></div>
+    <div class="head"><svg class="ill" aria-hidden="true"><use href="#i-question"/></svg><h2 id="h-faq" lang="en">Q &amp; A</h2></div>
     <div>
       <details><summary>איך מגיעים?</summary><p>ברכב, עם הקישור ל-Waze למעלה, או בהסעה מתל אביב (הרשמה בטופס אישור ההגעה).</p></details>
       <details><summary>יש חניה?</summary><p>יעודכן לפי המידע מהאחוזה.</p></details>
@@ -323,6 +353,7 @@ details p{margin-top:8px;color:var(--muted)}
 
   <section class="center" aria-label="תודה">
     <img class="photo thanks-photo" src="img/thanks.jpg" alt="רותם ואיתי מתנשקים מתחת לכוכב מואר" loading="lazy">
+    <svg class="ill" aria-hidden="true"><use href="#i-olive"/></svg>
     <div class="thanks" lang="en">thank you</div>
     <p>מחכים לחגוג איתכם, רותם ואיתי</p>
   </section>
